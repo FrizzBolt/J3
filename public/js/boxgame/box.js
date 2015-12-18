@@ -22,11 +22,16 @@ Box.prototype.collision = function(posX, posY, grid, scale) {
   //Walls
   for(var x = 0; x < grid.length; x++) {
     for(var y = 0; y < grid.length; y++) {
-      if(grid[y][x] instanceof Wall)
+      if(grid[y][x] instanceof Wall) {
         if(this.collidesWith(x * scale, y * scale, scale, scale)) {
           this.x = posX;
           this.y = posY;
+          if(grid[y][x] instanceof Switch) {
+            map.remove(Switch);
+            map.remove(Gate);
+          }
         }
+      }
     }
   }
 }
