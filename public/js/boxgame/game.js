@@ -68,8 +68,10 @@ grid = [
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
-box = new Box(0, 0);
-map = new Map(16, grid);
+var fog = new Image();
+fog.src = "/js/boxgame/fog.png";
+var box = new Box(0, 0);
+var map = new Map(16, grid);
 
 //Update
 var update = function (delta) {
@@ -86,6 +88,10 @@ var render = function() {
 
   //draw Map
   map.draw(context);
+
+	//draw fog
+	scale = 4;
+	context.drawImage(fog, box.x - fog.width/(2/scale) + box.size/2, box.y - fog.height/(2/scale) + box.size/2, fog.width * scale, fog.height * scale);
 
 }
 
